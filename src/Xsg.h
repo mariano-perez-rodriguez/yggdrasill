@@ -183,19 +183,6 @@ class Xsg : public BitGenerator, public Hasher, public Cloner<Xsg<M, S0, S1, S2,
     Xsg &inject(std::string key, std::size_t additionalRounds = 1) noexcept;
 
     /**
-     * Generate a random number using the minimum possible bits
-     *
-     * This function generates a random number between 0 and the given limit
-     * using the minimum possible bits.
-     *
-     * It will return 0 if 0 given.
-     *
-     * @param max  Limit number
-     * @return the generated number
-     */
-    std::uint64_t rand(std::uint64_t max) noexcept;
-
-    /**
      * Generate a variable length hash
      *
      * Hashing with this method entails:

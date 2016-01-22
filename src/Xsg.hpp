@@ -326,29 +326,6 @@ Xsg<M, S0, S1, S2, S3> &Xsg<M, S0, S1, S2, S3>::inject(std::string key, std::siz
 }
 
 /**
- * Generate a random number using the minimum possible bits
- *
- * This function generates a random number between 0 and the given limit
- * using the minimum possible bits.
- *
- * It will return 0 if 0 given.
- *
- * @param max  Limit number
- * @return the generated number
- */
-template <std::size_t M, std::size_t S0, std::size_t S1, std::size_t S2, std::size_t S3>
-std::uint64_t Xsg<M, S0, S1, S2, S3>::rand(std::uint64_t max) noexcept {
-  // immediately return on 0
-  if (0 == max) { return 0; }
-  // calculate logarithm
-  std::uint64_t l = 0, m = max, v; while (m >>= 1) { l++; }
-  // perform rejection sampling
-  do { v = 0; for (std::size_t i = 0; i < l; i++) { v = (v << 1) | next(); } } while (v >= max);
-
-  return v;
-}
-
-/**
  * Generate a variable length hash
  *
  * Hashing with this method entails:

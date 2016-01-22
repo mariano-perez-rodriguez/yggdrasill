@@ -1,5 +1,7 @@
 #include "Xsg.h"
 
+#include "Random.h"
+
 
 namespace {
   /*
@@ -167,46 +169,46 @@ Xsg512 distillXsg(std::string key, Xsg512 &boot) noexcept {
   std::bitset<557> s3; for (std::size_t i = 0; i < 557; i++) { s3[i] = boot.next(); }
 
   // extract multipliers
-  std::uint64_t as0l1 = mothers523[boot.rand(84)], as0m1 = mothers523[boot.rand(84)], as0h1 = mothers523[boot.rand(84)];
-  std::uint64_t as0l2 = mothers523[boot.rand(84)], as0m2 = mothers523[boot.rand(84)], as0h2 = mothers523[boot.rand(84)];
-  std::uint64_t as0l3 = mothers523[boot.rand(84)], as0m3 = mothers523[boot.rand(84)], as0h3 = mothers523[boot.rand(84)];
-  std::uint64_t as1l0 = mothers541[boot.rand(66)], as1m0 = mothers541[boot.rand(66)], as1h0 = mothers541[boot.rand(66)];
-  std::uint64_t as1l2 = mothers541[boot.rand(66)], as1m2 = mothers541[boot.rand(66)], as1h2 = mothers541[boot.rand(66)];
-  std::uint64_t as1l3 = mothers541[boot.rand(66)], as1m3 = mothers541[boot.rand(66)], as1h3 = mothers541[boot.rand(66)];
-  std::uint64_t as2l0 = mothers547[boot.rand(71)], as2m0 = mothers547[boot.rand(71)], as2h0 = mothers547[boot.rand(71)];
-  std::uint64_t as2l1 = mothers547[boot.rand(71)], as2m1 = mothers547[boot.rand(71)], as2h1 = mothers547[boot.rand(71)];
-  std::uint64_t as2l3 = mothers547[boot.rand(71)], as2m3 = mothers547[boot.rand(71)], as2h3 = mothers547[boot.rand(71)];
-  std::uint64_t as3l0 = mothers557[boot.rand(88)], as3m0 = mothers557[boot.rand(88)], as3h0 = mothers557[boot.rand(88)];
-  std::uint64_t as3l1 = mothers557[boot.rand(88)], as3m1 = mothers557[boot.rand(88)], as3h1 = mothers557[boot.rand(88)];
-  std::uint64_t as3l2 = mothers557[boot.rand(88)], as3m2 = mothers557[boot.rand(88)], as3h2 = mothers557[boot.rand(88)];
+  std::uint64_t as0l1 = mothers523[randRange(boot, 84)], as0m1 = mothers523[randRange(boot, 84)], as0h1 = mothers523[randRange(boot, 84)];
+  std::uint64_t as0l2 = mothers523[randRange(boot, 84)], as0m2 = mothers523[randRange(boot, 84)], as0h2 = mothers523[randRange(boot, 84)];
+  std::uint64_t as0l3 = mothers523[randRange(boot, 84)], as0m3 = mothers523[randRange(boot, 84)], as0h3 = mothers523[randRange(boot, 84)];
+  std::uint64_t as1l0 = mothers541[randRange(boot, 66)], as1m0 = mothers541[randRange(boot, 66)], as1h0 = mothers541[randRange(boot, 66)];
+  std::uint64_t as1l2 = mothers541[randRange(boot, 66)], as1m2 = mothers541[randRange(boot, 66)], as1h2 = mothers541[randRange(boot, 66)];
+  std::uint64_t as1l3 = mothers541[randRange(boot, 66)], as1m3 = mothers541[randRange(boot, 66)], as1h3 = mothers541[randRange(boot, 66)];
+  std::uint64_t as2l0 = mothers547[randRange(boot, 71)], as2m0 = mothers547[randRange(boot, 71)], as2h0 = mothers547[randRange(boot, 71)];
+  std::uint64_t as2l1 = mothers547[randRange(boot, 71)], as2m1 = mothers547[randRange(boot, 71)], as2h1 = mothers547[randRange(boot, 71)];
+  std::uint64_t as2l3 = mothers547[randRange(boot, 71)], as2m3 = mothers547[randRange(boot, 71)], as2h3 = mothers547[randRange(boot, 71)];
+  std::uint64_t as3l0 = mothers557[randRange(boot, 88)], as3m0 = mothers557[randRange(boot, 88)], as3h0 = mothers557[randRange(boot, 88)];
+  std::uint64_t as3l1 = mothers557[randRange(boot, 88)], as3m1 = mothers557[randRange(boot, 88)], as3h1 = mothers557[randRange(boot, 88)];
+  std::uint64_t as3l2 = mothers557[randRange(boot, 88)], as3m2 = mothers557[randRange(boot, 88)], as3h2 = mothers557[randRange(boot, 88)];
 
   // extract offsets
-  std::uint64_t cs0l1 = 1 + boot.rand(522), cs0m1 = 1 + boot.rand(522), cs0h1 = 1 + boot.rand(522);
-  std::uint64_t cs0l2 = 1 + boot.rand(522), cs0m2 = 1 + boot.rand(522), cs0h2 = 1 + boot.rand(522);
-  std::uint64_t cs0l3 = 1 + boot.rand(522), cs0m3 = 1 + boot.rand(522), cs0h3 = 1 + boot.rand(522);
-  std::uint64_t cs1l0 = 1 + boot.rand(540), cs1m0 = 1 + boot.rand(540), cs1h0 = 1 + boot.rand(540);
-  std::uint64_t cs1l2 = 1 + boot.rand(540), cs1m2 = 1 + boot.rand(540), cs1h2 = 1 + boot.rand(540);
-  std::uint64_t cs1l3 = 1 + boot.rand(540), cs1m3 = 1 + boot.rand(540), cs1h3 = 1 + boot.rand(540);
-  std::uint64_t cs2l0 = 1 + boot.rand(546), cs2m0 = 1 + boot.rand(546), cs2h0 = 1 + boot.rand(546);
-  std::uint64_t cs2l1 = 1 + boot.rand(546), cs2m1 = 1 + boot.rand(546), cs2h1 = 1 + boot.rand(546);
-  std::uint64_t cs2l3 = 1 + boot.rand(546), cs2m3 = 1 + boot.rand(546), cs2h3 = 1 + boot.rand(546);
-  std::uint64_t cs3l0 = 1 + boot.rand(556), cs3m0 = 1 + boot.rand(556), cs3h0 = 1 + boot.rand(556);
-  std::uint64_t cs3l1 = 1 + boot.rand(556), cs3m1 = 1 + boot.rand(556), cs3h1 = 1 + boot.rand(556);
-  std::uint64_t cs3l2 = 1 + boot.rand(556), cs3m2 = 1 + boot.rand(556), cs3h2 = 1 + boot.rand(556);
+  std::uint64_t cs0l1 = randRange(boot, 1, 523), cs0m1 = randRange(boot, 1, 523), cs0h1 = randRange(boot, 1, 523);
+  std::uint64_t cs0l2 = randRange(boot, 1, 523), cs0m2 = randRange(boot, 1, 523), cs0h2 = randRange(boot, 1, 523);
+  std::uint64_t cs0l3 = randRange(boot, 1, 523), cs0m3 = randRange(boot, 1, 523), cs0h3 = randRange(boot, 1, 523);
+  std::uint64_t cs1l0 = randRange(boot, 1, 541), cs1m0 = randRange(boot, 1, 541), cs1h0 = randRange(boot, 1, 541);
+  std::uint64_t cs1l2 = randRange(boot, 1, 541), cs1m2 = randRange(boot, 1, 541), cs1h2 = randRange(boot, 1, 541);
+  std::uint64_t cs1l3 = randRange(boot, 1, 541), cs1m3 = randRange(boot, 1, 541), cs1h3 = randRange(boot, 1, 541);
+  std::uint64_t cs2l0 = randRange(boot, 1, 547), cs2m0 = randRange(boot, 1, 547), cs2h0 = randRange(boot, 1, 547);
+  std::uint64_t cs2l1 = randRange(boot, 1, 547), cs2m1 = randRange(boot, 1, 547), cs2h1 = randRange(boot, 1, 547);
+  std::uint64_t cs2l3 = randRange(boot, 1, 547), cs2m3 = randRange(boot, 1, 547), cs2h3 = randRange(boot, 1, 547);
+  std::uint64_t cs3l0 = randRange(boot, 1, 557), cs3m0 = randRange(boot, 1, 557), cs3h0 = randRange(boot, 1, 557);
+  std::uint64_t cs3l1 = randRange(boot, 1, 557), cs3m1 = randRange(boot, 1, 557), cs3h1 = randRange(boot, 1, 557);
+  std::uint64_t cs3l2 = randRange(boot, 1, 557), cs3m2 = randRange(boot, 1, 557), cs3h2 = randRange(boot, 1, 557);
 
   // extract initial values
-  std::uint64_t is0l1 = boot.rand(523), is0m1 = boot.rand(523), is0h1 = boot.rand(523);
-  std::uint64_t is0l2 = boot.rand(523), is0m2 = boot.rand(523), is0h2 = boot.rand(523);
-  std::uint64_t is0l3 = boot.rand(523), is0m3 = boot.rand(523), is0h3 = boot.rand(523);
-  std::uint64_t is1l0 = boot.rand(541), is1m0 = boot.rand(541), is1h0 = boot.rand(541);
-  std::uint64_t is1l2 = boot.rand(541), is1m2 = boot.rand(541), is1h2 = boot.rand(541);
-  std::uint64_t is1l3 = boot.rand(541), is1m3 = boot.rand(541), is1h3 = boot.rand(541);
-  std::uint64_t is2l0 = boot.rand(547), is2m0 = boot.rand(547), is2h0 = boot.rand(547);
-  std::uint64_t is2l1 = boot.rand(547), is2m1 = boot.rand(547), is2h1 = boot.rand(547);
-  std::uint64_t is2l3 = boot.rand(547), is2m3 = boot.rand(547), is2h3 = boot.rand(547);
-  std::uint64_t is3l0 = boot.rand(557), is3m0 = boot.rand(557), is3h0 = boot.rand(557);
-  std::uint64_t is3l1 = boot.rand(557), is3m1 = boot.rand(557), is3h1 = boot.rand(557);
-  std::uint64_t is3l2 = boot.rand(557), is3m2 = boot.rand(557), is3h2 = boot.rand(557);
+  std::uint64_t is0l1 = randRange(boot, 523), is0m1 = randRange(boot, 523), is0h1 = randRange(boot, 523);
+  std::uint64_t is0l2 = randRange(boot, 523), is0m2 = randRange(boot, 523), is0h2 = randRange(boot, 523);
+  std::uint64_t is0l3 = randRange(boot, 523), is0m3 = randRange(boot, 523), is0h3 = randRange(boot, 523);
+  std::uint64_t is1l0 = randRange(boot, 541), is1m0 = randRange(boot, 541), is1h0 = randRange(boot, 541);
+  std::uint64_t is1l2 = randRange(boot, 541), is1m2 = randRange(boot, 541), is1h2 = randRange(boot, 541);
+  std::uint64_t is1l3 = randRange(boot, 541), is1m3 = randRange(boot, 541), is1h3 = randRange(boot, 541);
+  std::uint64_t is2l0 = randRange(boot, 547), is2m0 = randRange(boot, 547), is2h0 = randRange(boot, 547);
+  std::uint64_t is2l1 = randRange(boot, 547), is2m1 = randRange(boot, 547), is2h1 = randRange(boot, 547);
+  std::uint64_t is2l3 = randRange(boot, 547), is2m3 = randRange(boot, 547), is2h3 = randRange(boot, 547);
+  std::uint64_t is3l0 = randRange(boot, 557), is3m0 = randRange(boot, 557), is3h0 = randRange(boot, 557);
+  std::uint64_t is3l1 = randRange(boot, 557), is3m1 = randRange(boot, 557), is3h1 = randRange(boot, 557);
+  std::uint64_t is3l2 = randRange(boot, 557), is3m2 = randRange(boot, 557), is3h2 = randRange(boot, 557);
 
   // build final XSG
   return Xsg512(
