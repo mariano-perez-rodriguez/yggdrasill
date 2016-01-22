@@ -16,7 +16,7 @@ class Cloner {
      * @param where  Memory address where to clone
      * @return a pointer to a placement-new-allocated copy of the current object
      */
-    virtual T *clone(void *where = nullptr);
+    virtual T *clone(void *where = nullptr) const;
 
     /**
      * Virtual destructor

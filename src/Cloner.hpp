@@ -14,7 +14,7 @@
  * @return a pointer to a placement-new-allocated copy of the current object
  */
 template <typename T>
-T *Cloner<T>::clone(void *where) {
+T *Cloner<T>::clone(void *where) const {
   // Make sure we can copy-construct objects of type T
   static_assert(std::is_copy_constructible<T>::value, "Not copy constructible");
 
