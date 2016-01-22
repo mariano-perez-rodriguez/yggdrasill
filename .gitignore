@@ -1,0 +1,6 @@
+# ignore release directory
+release
+# ignore debug directory
+debug
+# ignore noopt directory
+noopt
