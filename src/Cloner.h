@@ -28,5 +28,5 @@ class Cloner {
 
 #include "Cloner.hpp"
 
-#endif /* CLONER_H__ */
+#endif  /* CLONER_H__ */
 

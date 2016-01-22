@@ -6,6 +6,7 @@
 #include <type_traits>
 #include <new>
 
+
 /**
  * Placement-clone the current object
  *
