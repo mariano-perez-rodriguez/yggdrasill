@@ -18,7 +18,7 @@ T *Cloner<T>::clone(void *where) const {
   // Make sure we can copy-construct objects of type T
   static_assert(std::is_copy_constructible<T>::value, "Not copy constructible");
 
-  return nullptr == where ? new T(*static_cast<T *>(this)) : new(where) T(*static_cast<T *>(this));
+  return nullptr == where ? new T(*static_cast<T *>(const_cast<Cloner<T> *>(this))) : new(where) T(*static_cast<T *>(const_cast<Cloner<T> *>(this)));
 }
 
 
