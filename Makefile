@@ -132,7 +132,7 @@ CC_LANG_FLAGS += -freg-struct-return
 CC_VERB_FLAGS  =
 # CC_VERB_FLAGS += -v
 CC_VERB_FLAGS += -fmessage-length=0
-CC_VERB_FLAGS += -fdiagnostics-color=always
+CC_VERB_FLAGS += -fdiagnostics-color=always -fdiagnostics-show-option
 CC_VERB_FLAGS += -ftabstop=2
 
 
@@ -158,7 +158,8 @@ CC_WARN_FLAGS += -Wlogical-op
 #CC_WARN_FLAGS += -Waggregate-return  # just annoying
 CC_WARN_FLAGS += -Wmissing-declarations -Wredundant-decls
 CC_WARN_FLAGS += -Wnormalized=nfkc
-CC_WARN_FLAGS += -Wpacked -Wpadded
+CC_WARN_FLAGS += -Wpacked
+# CC_WARN_FLAGS += -Wpadded # just annoying
 # CC_WARN_FLAGS += -Winline  # just annoying
 CC_WARN_FLAGS += -Wvector-operation-performance
 CC_WARN_FLAGS += -Wvla
