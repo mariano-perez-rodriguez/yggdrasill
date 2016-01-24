@@ -24,23 +24,31 @@ namespace {
   struct is_virtual_base_of {
     private:
       /**
-       * A "facsimile" of Derived
+       * This are just stepping stone structure definitions to disambiguate
+       * Base and Derived.
        *
        */
-      struct X : public Derived {};
+      struct ZBase    : virtual public Base    {};
+      struct ZDerived :         public Derived {};
 
       /**
        * A class deriving virtually from base
        *
+       * NOTE: the pragmas are in place to suppress spurious warnings, since
+       *       this is just a testbed structure and not a real, user-defined,
+       *       production one.
        */
-      struct Y : public Derived, virtual public Base {};
+      #pragma GCC diagnostic push
+      #pragma GCC diagnostic ignored "-Wextra"
+      struct X : virtual public ZDerived, public ZBase {};
+      #pragma GCC diagnostic pop
 
     public:
       /**
        * Virtual derivation should make X and Y the same size
        *
        */
-      static constexpr bool value = (sizeof(X) == sizeof(Y));
+      static constexpr bool value = sizeof(Derived) == sizeof(X);
   };
 
   /**
