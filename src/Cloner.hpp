@@ -7,6 +7,14 @@
 #include <new>
 
 
+/*
+ * This is vomit-inducing, but it is the only way to reliably suppress spurious
+ * warnings in GCC for this file.
+ *
+ */
+#pragma GCC system_header
+
+
 namespace {
   /**
    * Virtual base detection
@@ -24,24 +32,10 @@ namespace {
   struct is_virtual_base_of {
     private:
       /**
-       * This are just stepping stone structure definitions to disambiguate
-       * Base and Derived.
-       *
-       */
-      struct ZBase    : virtual public Base    {};
-      struct ZDerived :         public Derived {};
-
-      /**
        * A class deriving virtually from base
        *
-       * NOTE: the pragmas are in place to suppress spurious warnings, since
-       *       this is just a testbed structure and not a real, user-defined,
-       *       production one.
        */
-      #pragma GCC diagnostic push
-      #pragma GCC diagnostic ignored "-Wextra"
-      struct X : virtual public ZDerived, public ZBase {};
-      #pragma GCC diagnostic pop
+      struct X : public Derived, virtual public Base {};
 
     public:
       /**
