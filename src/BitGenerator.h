@@ -9,6 +9,14 @@
 class BitGenerator {
   public:
     /**
+     * Pure virtual placement clone
+     *
+     * @param where  Memory position where to emplace
+     * @return the cloned object
+     */
+    virtual BitGenerator *clone(void *where = nullptr) const = 0;
+
+    /**
      * Pure virtual method to return the current output and advance the generator
      *
      * @return the generator's output bit

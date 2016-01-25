@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include <string>
 #include <cstdint>
+#include <new>
 
 #include "BitGenerator.h"
 #include "Hasher.h"
@@ -27,6 +28,16 @@ class Xsg : public BitGenerator, public Hasher {
   static_assert(1 == M % 2, "The master LFSR size should be an odd prime");
 
   public:
+    /**
+     * Pure virtual placement clone
+     *
+     * @param where  Memory position where to emplace
+     * @return the cloned object
+     */
+    virtual Xsg *clone(void *where = nullptr) const {
+      return nullptr == where ? new Xsg(*this) : new(where) Xsg(*this);
+    }
+
     /**
      * Construct an XSG from its components
      *

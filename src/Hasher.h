@@ -12,6 +12,14 @@
 class Hasher {
   public:
     /**
+     * Pure virtual placement clone
+     *
+     * @param where  Memory position where to emplace
+     * @return the cloned object
+     */
+    virtual Hasher *clone(void *where = nullptr) const = 0;
+
+    /**
      * Generate a variable length hash
      *
      * @param s    String to hash
