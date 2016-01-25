@@ -8,7 +8,6 @@
 
 #include "BitGenerator.h"
 #include "Hasher.h"
-#include "Cloner.h"
 #include "Lfsr.h"
 #include "Icg.h"
 
@@ -23,7 +22,7 @@
  * @param S3  Slave 3 LFSR size (should be prime)
  */
 template <std::size_t M, std::size_t S0, std::size_t S1, std::size_t S2, std::size_t S3>
-class Xsg : public BitGenerator, public Hasher, public Cloner<Xsg<M, S0, S1, S2, S3>> {
+class Xsg : public BitGenerator, public Hasher {
   // Ensure the master LFSR is at least odd
   static_assert(1 == M % 2, "The master LFSR size should be an odd prime");
 

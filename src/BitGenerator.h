@@ -1,6 +1,7 @@
 #ifndef BIT_GENERATOR_H__
 #define BIT_GENERATOR_H__
 
+
 /**
  * Interface for boolean generators
  *
