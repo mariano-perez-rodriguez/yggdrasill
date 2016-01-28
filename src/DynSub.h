@@ -10,23 +10,23 @@
 
 
 /**
- * Dynamic Substitution class
+ * Dynamic Substitution class - Single-Random-Single-Data version
  *
  */
-class DynSub {
+class DynSubSRSD {
   public:
     /**
      * Construct a new Dynamic Substitution from a Bit Generator
      *
      * @param g  Bit Generator to use
      */
-    DynSub(BitGenerator const &g);
+    DynSubSRSD(BitGenerator const &g);
 
     /**
      * Virtual destructor
      *
      */
-    virtual ~DynSub() noexcept = default;
+    virtual ~DynSubSRSD() noexcept = default;
 
     /**
      * Transform the given character through the Dynamic Substitution
@@ -60,23 +60,23 @@ class DynSub {
 
 
 /**
- * Dynamic Substitution's Inverse class
+ * Dynamic Substitution class - Single-Random-Single-Data's Inverse
  *
  */
-class InvDynSub : public DynSub {
+class InvDynSubSRSD : public DynSubSRSD {
   public:
     /**
      * Construct a new Dynamic Substitution's Inverse from a Bit Generator
      *
      * @param g  Bit Generator to use
      */
-    InvDynSub(BitGenerator const &g);
+    InvDynSubSRSD(BitGenerator const &g);
 
     /**
      * Virtual destructor
      *
      */
-    virtual ~InvDynSub() noexcept = default;
+    virtual ~InvDynSubSRSD() noexcept = default;
 
     /**
      * Transform the given character through the Dynamic Substitution's Inverse
@@ -104,16 +104,16 @@ class InvDynSub : public DynSub {
 
 
 /**
- * Dynamic Substitution class - Double-Data version
+ * Dynamic Substitution class - Single-Random-Double-Data version
  *
  */
-class DynSubDD : public DynSub {
+class DynSubSRDD : public DynSubSRSD {
   public:
     /**
      * Import all constructors
      *
      */
-    using DynSub::DynSub;
+    using DynSubSRSD::DynSubSRSD;
 
     /**
      * Transform the given character through the Dynamic Substitution
@@ -126,16 +126,16 @@ class DynSubDD : public DynSub {
 
 
 /**
- * Dynamic Substitution class - Double-Data version's Inverse
+ * Dynamic Substitution class - Single-Random-Double-Data version's Inverse
  *
  */
-class InvDynSubDD : public InvDynSub {
+class InvDynSubSRDD : public InvDynSubSRSD {
   public:
     /**
      * Import all constructors
      *
      */
-    using InvDynSub::InvDynSub;
+    using InvDynSubSRSD::InvDynSubSRSD;
 
     /**
      * Transform the given character through the Dynamic Substitution's Inverse
@@ -148,16 +148,16 @@ class InvDynSubDD : public InvDynSub {
 
 
 /**
- * Dynamic Substitution class - Double-Random version
+ * Dynamic Substitution class - Double-Random-Single-Data version
  *
  */
-class DynSubDR : public DynSub {
+class DynSubDRSD : public DynSubSRSD {
   public:
     /**
      * Import all constructors
      *
      */
-    using DynSub::DynSub;
+    using DynSubSRSD::DynSubSRSD;
 
     /**
      * Transform the given character through the Dynamic Substitution
@@ -170,16 +170,16 @@ class DynSubDR : public DynSub {
 
 
 /**
- * Dynamic Substitution class - Double-Random version's Inverse
+ * Dynamic Substitution class - Double-Random-Single-Data version's Inverse
  *
  */
-class InvDynSubDR : public InvDynSub {
+class InvDynSubDRSD : public InvDynSubSRSD {
   public:
     /**
      * Import all constructors
      *
      */
-    using InvDynSub::InvDynSub;
+    using InvDynSubSRSD::InvDynSubSRSD;
 
     /**
      * Transform the given character through the Dynamic Substitution's Inverse
@@ -195,13 +195,13 @@ class InvDynSubDR : public InvDynSub {
  * Dynamic Substitution class - Double-Random-Double-Data version
  *
  */
-class DynSubDRDD : public DynSub {
+class DynSubDRDD : public DynSubSRSD {
   public:
     /**
      * Import all constructors
      *
      */
-    using DynSub::DynSub;
+    using DynSubSRSD::DynSubSRSD;
 
     /**
      * Transform the given character through the Dynamic Substitution
@@ -214,16 +214,16 @@ class DynSubDRDD : public DynSub {
 
 
 /**
- * Dynamic Substitution class - Double-Random version's Inverse
+ * Dynamic Substitution class - Double-Random-Double-Data version's Inverse
  *
  */
-class InvDynSubDRDD : public InvDynSub {
+class InvDynSubDRDD : public InvDynSubSRSD {
   public:
     /**
      * Import all constructors
      *
      */
-    using InvDynSub::InvDynSub;
+    using InvDynSubSRSD::InvDynSubSRSD;
 
     /**
      * Transform the given character through the Dynamic Substitution's Inverse
