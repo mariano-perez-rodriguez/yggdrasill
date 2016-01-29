@@ -29,14 +29,12 @@ class Xsg : public BitGenerator, public Hasher {
 
   public:
     /**
-     * Pure virtual placement clone
+     * Virtual placement clone
      *
      * @param where  Memory position where to emplace
      * @return the cloned object
      */
-    virtual Xsg *clone(void *where = nullptr) const {
-      return nullptr == where ? new Xsg(*this) : new(where) Xsg(*this);
-    }
+    virtual Xsg *clone(void *where = nullptr) const override;
 
     /**
      * Construct an XSG from its components

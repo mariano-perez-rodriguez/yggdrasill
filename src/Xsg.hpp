@@ -82,6 +82,17 @@ namespace {
 
 
 /**
+ * Virtual placement clone
+ *
+ * @param where  Memory position where to emplace
+ * @return the cloned object
+ */
+template <std::size_t M, std::size_t S0, std::size_t S1, std::size_t S2, std::size_t S3>
+Xsg<M, S0, S1, S2, S3> *Xsg<M, S0, S1, S2, S3>::clone(void *where) const {
+  return nullptr == where ? new Xsg(*this) : new(where) Xsg(*this);
+}
+
+/**
  * Construct an XSG from its components
  *
  * @param m     Master LFSR
