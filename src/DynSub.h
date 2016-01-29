@@ -16,6 +16,14 @@
 class DynSubSRSD {
   public:
     /**
+     * Virtual placement clone
+     *
+     * @param where  Memory position where to emplace
+     * @return the cloned object
+     */
+    virtual DynSubSRSD *clone(void *where = nullptr) const;
+
+    /**
      * Construct a new Dynamic Substitution from a Bit Generator
      *
      * @param g  Bit Generator to use
@@ -57,6 +65,14 @@ class DynSubSRSD {
 class InvDynSubSRSD : public DynSubSRSD {
   public:
     /**
+     * Virtual placement clone
+     *
+     * @param where  Memory position where to emplace
+     * @return the cloned object
+     */
+    virtual InvDynSubSRSD *clone(void *where = nullptr) const override;
+
+    /**
      * Construct a new Dynamic Substitution's Inverse from a Bit Generator
      *
      * @param g  Bit Generator to use
@@ -93,6 +109,14 @@ class InvDynSubSRSD : public DynSubSRSD {
 class DynSubSRDD : public DynSubSRSD {
   public:
     /**
+     * Virtual placement clone
+     *
+     * @param where  Memory position where to emplace
+     * @return the cloned object
+     */
+    virtual DynSubSRDD *clone(void *where = nullptr) const override;
+
+    /**
      * Import all constructors
      *
      */
@@ -113,6 +137,14 @@ class DynSubSRDD : public DynSubSRSD {
  */
 class InvDynSubSRDD : public InvDynSubSRSD {
   public:
+    /**
+     * Virtual placement clone
+     *
+     * @param where  Memory position where to emplace
+     * @return the cloned object
+     */
+    virtual InvDynSubSRDD *clone(void *where = nullptr) const override;
+
     /**
      * Import all constructors
      *
@@ -136,6 +168,14 @@ class InvDynSubSRDD : public InvDynSubSRSD {
 class DynSubDRSD : public DynSubSRSD {
   public:
     /**
+     * Virtual placement clone
+     *
+     * @param where  Memory position where to emplace
+     * @return the cloned object
+     */
+    virtual DynSubDRSD *clone(void *where = nullptr) const override;
+
+    /**
      * Import all constructors
      *
      */
@@ -156,6 +196,14 @@ class DynSubDRSD : public DynSubSRSD {
  */
 class InvDynSubDRSD : public InvDynSubSRSD {
   public:
+    /**
+     * Virtual placement clone
+     *
+     * @param where  Memory position where to emplace
+     * @return the cloned object
+     */
+    virtual InvDynSubDRSD *clone(void *where = nullptr) const override;
+
     /**
      * Import all constructors
      *
@@ -179,6 +227,14 @@ class InvDynSubDRSD : public InvDynSubSRSD {
 class DynSubDRDD : public DynSubSRSD {
   public:
     /**
+     * Virtual placement clone
+     *
+     * @param where  Memory position where to emplace
+     * @return the cloned object
+     */
+    virtual DynSubDRDD *clone(void *where = nullptr) const override;
+
+    /**
      * Import all constructors
      *
      */
@@ -199,6 +255,14 @@ class DynSubDRDD : public DynSubSRSD {
  */
 class InvDynSubDRDD : public InvDynSubSRSD {
   public:
+    /**
+     * Virtual placement clone
+     *
+     * @param where  Memory position where to emplace
+     * @return the cloned object
+     */
+    virtual InvDynSubDRDD *clone(void *where = nullptr) const override;
+
     /**
      * Import all constructors
      *

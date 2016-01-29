@@ -1,6 +1,6 @@
 #include "DynSub.h"
 
-#include <vector>
+#include <new>
 
 #include "Random.h"
 
@@ -40,6 +40,16 @@ namespace {
 
 
 /**
+ * Virtual placement clone
+ *
+ * @param where  Memory position where to emplace
+ * @return the cloned object
+ */
+DynSubSRSD *DynSubSRSD::clone(void *where) const {
+  return nullptr == where ? new DynSubSRSD(*this) : new(where) DynSubSRSD(*this);
+}
+
+/**
  * Construct a new Dynamic Substitution from a Bit Generator
  *
  * @param g  Bit Generator to use
@@ -58,6 +68,16 @@ std::uint8_t DynSubSRSD::xfrm(std::uint8_t c) {
   return result;
 }
 
+
+/**
+ * Virtual placement clone
+ *
+ * @param where  Memory position where to emplace
+ * @return the cloned object
+ */
+InvDynSubSRSD *InvDynSubSRSD::clone(void *where) const {
+  return nullptr == where ? new InvDynSubSRSD(*this) : new(where) InvDynSubSRSD(*this);
+}
 
 /**
  * Construct a new Dynamic Substitution's Inverse from a Bit Generator
@@ -81,6 +101,16 @@ std::uint8_t InvDynSubSRSD::xfrm(std::uint8_t c) {
 
 
 /**
+ * Virtual placement clone
+ *
+ * @param where  Memory position where to emplace
+ * @return the cloned object
+ */
+DynSubSRDD *DynSubSRDD::clone(void *where) const {
+  return nullptr == where ? new DynSubSRDD(*this) : new(where) DynSubSRDD(*this);
+}
+
+/**
  * Transform the given character through the Dynamic Substitution
  *
  * @param c  Character to transform
@@ -91,6 +121,16 @@ std::uint8_t DynSubSRDD::xfrm(std::uint8_t c) {
   std::swap(fwd[fwd[c]], fwd[rnd]);
   return result;
 
+}
+
+/**
+ * Virtual placement clone
+ *
+ * @param where  Memory position where to emplace
+ * @return the cloned object
+ */
+InvDynSubSRDD *InvDynSubSRDD::clone(void *where) const {
+  return nullptr == where ? new InvDynSubSRDD(*this) : new(where) InvDynSubSRDD(*this);
 }
 
 /**
@@ -108,6 +148,16 @@ std::uint8_t InvDynSubSRDD::xfrm(std::uint8_t c) {
 
 
 /**
+ * Virtual placement clone
+ *
+ * @param where  Memory position where to emplace
+ * @return the cloned object
+ */
+DynSubDRSD *DynSubDRSD::clone(void *where) const {
+  return nullptr == where ? new DynSubDRSD(*this) : new(where) DynSubDRSD(*this);
+}
+
+/**
  * Transform the given character through the Dynamic Substitution
  *
  * @param c  Character to transform
@@ -117,6 +167,16 @@ std::uint8_t DynSubDRSD::xfrm(std::uint8_t c) {
   std::uint8_t result = fwd[c], rnd = static_cast<std::uint8_t>(randRange(*gen, 256)) ^ fwd[static_cast<std::uint8_t>(randRange(*gen, 256))];
   std::swap(fwd[c], fwd[rnd]);
   return result;
+}
+
+/**
+ * Virtual placement clone
+ *
+ * @param where  Memory position where to emplace
+ * @return the cloned object
+ */
+InvDynSubDRSD *InvDynSubDRSD::clone(void *where) const {
+  return nullptr == where ? new InvDynSubDRSD(*this) : new(where) InvDynSubDRSD(*this);
 }
 
 /**
@@ -134,6 +194,16 @@ std::uint8_t InvDynSubDRSD::xfrm(std::uint8_t c) {
 
 
 /**
+ * Virtual placement clone
+ *
+ * @param where  Memory position where to emplace
+ * @return the cloned object
+ */
+DynSubDRDD *DynSubDRDD::clone(void *where) const {
+  return nullptr == where ? new DynSubDRDD(*this) : new(where) DynSubDRDD(*this);
+}
+
+/**
  * Transform the given character through the Dynamic Substitution
  *
  * @param c  Character to transform
@@ -143,6 +213,16 @@ std::uint8_t DynSubDRDD::xfrm(std::uint8_t c) {
   std::uint8_t result = fwd[fwd[c]], rnd = static_cast<std::uint8_t>(randRange(*gen, 256)) ^ fwd[static_cast<std::uint8_t>(randRange(*gen, 256))];
   std::swap(fwd[fwd[c]], fwd[rnd]);
   return result;
+}
+
+/**
+ * Virtual placement clone
+ *
+ * @param where  Memory position where to emplace
+ * @return the cloned object
+ */
+InvDynSubDRDD *InvDynSubDRDD::clone(void *where) const {
+  return nullptr == where ? new InvDynSubDRDD(*this) : new(where) InvDynSubDRDD(*this);
 }
 
 /**
