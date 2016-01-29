@@ -38,14 +38,6 @@ class DynSubSRSD {
 
   protected:
     /**
-     * Generate a random permutation using the given Bit Generator
-     *
-     * @param g  Bit Generator to use
-     * @return the permuted array
-     */
-    static std::array<std::uint8_t, 256> generateRandomPermutation(BitGenerator &gen) noexcept;
-
-    /**
      * Bit Generator (wrapped into a value_ptr)
      *
      */
@@ -57,7 +49,6 @@ class DynSubSRSD {
      */
     std::array<std::uint8_t, 256> fwd;
 };
-
 
 /**
  * Dynamic Substitution class - Single-Random-Single-Data's Inverse
@@ -88,14 +79,6 @@ class InvDynSubSRSD : public DynSubSRSD {
 
   protected:
     /**
-     * Invert the given substitution
-     *
-     * @param f  the substitution to use
-     * @return the inverted substitution
-     */
-    static std::array<std::uint8_t, 256> generateInversePermutation(std::array<std::uint8_t, 256> const &f) noexcept;
-
-    /**
      * Current substitution's inverse
      *
      */
@@ -123,7 +106,6 @@ class DynSubSRDD : public DynSubSRSD {
      */
     virtual std::uint8_t xfrm(std::uint8_t c) override;
 };
-
 
 /**
  * Dynamic Substitution class - Single-Random-Double-Data version's Inverse
@@ -168,7 +150,6 @@ class DynSubDRSD : public DynSubSRSD {
     virtual std::uint8_t xfrm(std::uint8_t c) override;
 };
 
-
 /**
  * Dynamic Substitution class - Double-Random-Single-Data version's Inverse
  *
@@ -211,7 +192,6 @@ class DynSubDRDD : public DynSubSRSD {
      */
     virtual std::uint8_t xfrm(std::uint8_t c) override;
 };
-
 
 /**
  * Dynamic Substitution class - Double-Random-Double-Data version's Inverse

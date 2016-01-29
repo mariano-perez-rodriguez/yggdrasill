@@ -5,6 +5,40 @@
 #include "Random.h"
 
 
+namespace {
+  /**
+   * Generate a random permutation using the given Bit Generator
+   *
+   * @param g  Bit Generator to use
+   * @return the permuted array
+   */
+  std::array<std::uint8_t, 256> generateRandomPermutation(BitGenerator &gen) noexcept {
+    std::vector<std::size_t> perm = generateAndShufflePermutation(gen, 256, 2);
+    std::array<std::uint8_t, 256> ret;
+
+    for (std::size_t i = 0; i < 256; i++) {
+      ret[i] = static_cast<std::uint8_t>(perm[i]);
+    }
+
+    return ret;
+  }
+
+  /**
+   * Invert the given substitution
+   *
+   * @param fwd  the substitution to use
+   * @return the inverted substitution
+   */
+  std::array<std::uint8_t, 256> generateInversePermutation(std::array<std::uint8_t, 256> const &fwd) noexcept {
+    std::array<std::uint8_t, 256> ret;
+    for (std::size_t i = 0; i < 256; i++) {
+      ret[fwd[i]] = static_cast<std::uint8_t>(i);
+    }
+    return ret;
+  }
+}
+
+
 /**
  * Construct a new Dynamic Substitution from a Bit Generator
  *
@@ -22,23 +56,6 @@ std::uint8_t DynSubSRSD::xfrm(std::uint8_t c) {
   std::uint8_t result = fwd[c], rnd = static_cast<std::uint8_t>(randRange(*gen, 256));
   std::swap(fwd[c], fwd[rnd]);
   return result;
-}
-
-/**
- * Generate a random permutation using the given Bit Generator
- *
- * @param g  Bit Generator to use
- * @return the permuted array
- */
-std::array<std::uint8_t, 256> DynSubSRSD::generateRandomPermutation(BitGenerator &gen) noexcept {
-  std::vector<std::size_t> perm = generateAndShufflePermutation(gen, 256, 2);
-  std::array<std::uint8_t, 256> ret;
-
-  for (std::size_t i = 0; i < 256; i++) {
-    ret[i] = static_cast<std::uint8_t>(perm[i]);
-  }
-
-  return ret;
 }
 
 
@@ -60,20 +77,6 @@ std::uint8_t InvDynSubSRSD::xfrm(std::uint8_t c) {
   std::swap(inv[c], inv[fwd[rnd]]);
   std::swap(fwd[inv[c]], fwd[rnd]);
   return result;
-}
-
-/**
- * Invert the given substitution
- *
- * @param f  the substitution to use
- * @return the inverted substitution
- */
-std::array<std::uint8_t, 256> InvDynSubSRSD::generateInversePermutation(std::array<std::uint8_t, 256> const &f) noexcept {
-  std::array<std::uint8_t, 256> ret;
-  for (std::size_t i = 0; i < 256; i++) {
-    ret[f[i]] = static_cast<std::uint8_t>(i);
-  }
-  return ret;
 }
 
 
