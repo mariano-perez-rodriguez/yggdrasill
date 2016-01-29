@@ -3,6 +3,7 @@
 
 #include <cstddef>
 #include <array>
+#include <vector>
 
 #include "BitGenerator.h"
 
@@ -276,6 +277,52 @@ class InvDynSubDRDD : public InvDynSubSRSD {
      * @return the transformed character
      */
     virtual std::uint8_t xfrm(std::uint8_t c) override;
+};
+
+
+/**
+ * Enum class for each type of Dynamic Substitution supported
+ *
+ * Four letter acronym shorthands are provided.
+ *
+ */
+enum class DynSubType {
+  SingleRandomSingleData, SRSD = SingleRandomSingleData,
+  SingleRandomDoubleData, SRDD = SingleRandomDoubleData,
+  DoubleRandomSingleData, DRSD = DoubleRandomSingleData,
+  DoubleRandomDoubleData, DRDD = DoubleRandomDoubleData,
+};
+
+
+/**
+ * Block-level Dynamic Substitution class
+ *
+ */
+class DynSub {
+  public:
+    /**
+     * Construct a Dynamic Substitution of the given type, using the given Bit Generator
+     *
+     * @param gens  Bit Generators to use
+     * @param type  Type to create
+     */
+    DynSub(DynSubType const type, std::vector<BitGenerator> &gens);
+
+    /**
+     * Apply the Dynamic Substitution to the given byte block
+     *
+     * @param input  Input byte block
+     * @return the transformed byte block
+     * @throws
+     */
+    std::vector<std::uint8_t> xfrm(std::vector<std::uint8_t> const &input);
+
+  protected:
+    /**
+     * Dynamic Substitutions to use
+     *
+     */
+    std::vector<value_ptr<DynSubSRSD>> subs;
 };
 
 

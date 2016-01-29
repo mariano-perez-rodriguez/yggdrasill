@@ -1,6 +1,7 @@
 #include "DynSub.h"
 
 #include <new>
+#include <stdexcept>
 
 #include "Random.h"
 
@@ -33,6 +34,27 @@ namespace {
     std::array<std::uint8_t, 256> ret;
     for (std::size_t i = 0; i < 256; i++) {
       ret[fwd[i]] = static_cast<std::uint8_t>(i);
+    }
+    return ret;
+  }
+
+  /**
+   * Create a vector of Dynamic Substitutions of the given type using the given Bit Generators
+   *
+   * @param g  Bit Generators to use
+   * @param t  Dynamic Substitution type to create
+   * @return the created vector of Dynamic Substitutions
+   */
+  std::vector<value_ptr<DynSubSRSD>> createSubs(DynSubType const t, std::vector<BitGenerator> &g) {
+    std::vector<value_ptr<DynSubSRSD>> ret;
+    for (std::size_t i = 0; i < g.size(); i++) {
+      switch (t) {
+        case DynSubType::SingleRandomSingleData: ret.push_back(new DynSubSRSD(g[i])); break;
+        case DynSubType::SingleRandomDoubleData: ret.push_back(new DynSubSRDD(g[i])); break;
+        case DynSubType::DoubleRandomSingleData: ret.push_back(new DynSubDRSD(g[i])); break;
+        case DynSubType::DoubleRandomDoubleData: ret.push_back(new DynSubDRDD(g[i])); break;
+        default: break;
+      }
     }
     return ret;
   }
@@ -236,5 +258,35 @@ std::uint8_t InvDynSubDRDD::xfrm(std::uint8_t c) {
   std::swap(inv[c], inv[fwd[rnd]]);
   std::swap(fwd[tmp], fwd[rnd]);
   return result;
+}
+
+
+/**
+ * Construct a Dynamic Substitution of the given width, of the given type, using the given Bit Generator
+ *
+ * @param gen  Bit Generator to use
+ * @param type  Type to create
+ * @param width  Dynamic Substitution byte width
+ */
+DynSub::DynSub(DynSubType const type, std::vector<BitGenerator> &gens) : subs(createSubs(type, gens)) {}
+
+/**
+ * Apply the Dynamic Substitution to the given byte block
+ *
+ * @param input  Input byte block
+ * @return the transformed byte block
+ * @throws
+ */
+std::vector<std::uint8_t> DynSub::xfrm(std::vector<std::uint8_t> const &input) {
+  if (input.size() != subs.size()) {
+    throw new std::length_error("Width mismatch");
+  }
+
+  std::vector<std::uint8_t> ret;
+  for (std::size_t i = 0; i < subs.size(); i++) {
+    ret.push_back(subs[i]->xfrm(input[i]));
+  }
+
+  return ret;
 }
 
