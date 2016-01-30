@@ -2,6 +2,7 @@
 
 #include <new>
 #include <stdexcept>
+#include <algorithm>
 
 #include "Random.h"
 
@@ -17,9 +18,7 @@ namespace {
     std::vector<std::size_t> perm = generateAndShufflePermutation(gen, 256, 2);
     std::array<std::uint8_t, 256> ret;
 
-    for (std::size_t i = 0; i < 256; i++) {
-      ret[i] = static_cast<std::uint8_t>(perm[i]);
-    }
+    std::copy_n(perm.begin(), 256, ret.begin());
 
     return ret;
   }
