@@ -76,3 +76,19 @@ std::vector<std::size_t> generateAndShufflePermutation(BitGenerator &gen, std::s
   return ret;
 }
 
+
+/**
+ * Invert the given permutation
+ *
+ * @param fwd  Forward permutation to invert
+ * @return the inverted permutation
+ */
+std::vector<std::size_t> invertPermutation(std::vector<std::size_t> const &fwd) noexcept {
+  std::vector<std::size_t> inv;
+  for (std::size_t i = 0; i < fwd.size(); i++) {
+    inv[fwd[i]] = i;
+  }
+  return inv;
+}
+
+

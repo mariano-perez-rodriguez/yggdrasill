@@ -50,5 +50,13 @@ void shufflePermutation(BitGenerator &gen, std::vector<std::size_t> &perm) noexc
 std::vector<std::size_t> generateAndShufflePermutation(BitGenerator &gen, std::size_t len, std::size_t rep = 2) noexcept;
 
 
+/**
+ * Invert the given permutation
+ *
+ * @param fwd  Forward permutation to invert
+ * @return the inverted permutation
+ */
+std::vector<std::size_t> invertPermutation(std::vector<std::size_t> const &fwd) noexcept;
+
 #endif  /* RANDOM_H__ */
 
